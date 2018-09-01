@@ -1,0 +1,73 @@
+﻿@model UPictures.Web.Models.SearchViewModel
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h1>Search</h1>
+
+<p>Coming soon!</p>
+
+@*@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SearchQuery, new { htmlAttributes = new { placeholder = "Search" } })
+                @Html.ValidationMessageFor(model => model.SearchQuery, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model.SearchQuery))
+{
+    <p>Total @Model.TotalResults results for <strong>@Model.SearchQuery</strong></p>
+
+    if (Model.AlbumSearchResults.Count > 0)
+    {
+        <h3>Albums</h3>
+        <table class="table">
+            @foreach (var item in Model.AlbumSearchResults)
+            {
+                <tr>
+                    <td>
+                        @{ var albumDisplayName = Html.DisplayFor(modelItem => item.Name).ToHtmlString(); }
+                        @Html.ActionLink(albumDisplayName, "View", "Album", new { id = item.Id }, null) [@Html.DisplayFor(modelItem => item.PicturesCount) pictures]
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+
+    if (Model.PictureSearchResults.Count > 0)
+    {
+        <h3>Pictures</h3>
+        <table class="table">
+            @foreach (var item in Model.PictureSearchResults)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("View", "Picture", new { id = item.Id })">
+                            @{ 
+                                var fileName = @item.FileName + ".jpg";
+                            }
+                            <picture>
+                                <source src="~/Pictures/search/@item.AlbumName/@fileName" />
+                                <img src="~/Pictures/search/@item.AlbumName/@fileName" />
+                            </picture>
+                            @Html.ActionLink(Html.DisplayFor(modelItem => item.FileName).ToHtmlString(), "View", "Picture", new { id = item.Id }, null) from @item.AlbumName
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $("#SearchQuery").focus();
+</script>*@

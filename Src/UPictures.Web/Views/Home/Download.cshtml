@@ -1,0 +1,36 @@
+﻿@model IEnumerable<UPictures.Web.Models.DownloadViewModel>
+
+@{
+    ViewBag.Title = "Downloads";
+}
+
+<h2>Download</h2>
+
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Picture Count</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.CreationDate.ToShortDateString()</td>
+            <td>@item.Name</td>
+            <td>@item.Status</td>
+            <td>@item.Pictures.Count()</td>
+            <td>
+                @if (item.Status == "New")
+                {
+                    @Html.ActionLink("Checkout", "CloseDownload", "Home", new {id = item.Id}, null);
+                }
+                else
+                {
+                    <a href="http://www.google.com">Download</a>
+                }
+            </td>
+        </tr>
+    }
+</table>

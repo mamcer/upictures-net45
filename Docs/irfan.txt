@@ -1,0 +1,8 @@
+thumbnail
+i_view32.exe D:\home\pictures\2016-05-02_vacaciones-atenas\*.jpg /resize=(100,70) /aspectratio /resample /convert=D:\home\etc\100x70\*.jpg
+
+view
+i_view32.exe D:\home\pictures\2016-05-02_vacaciones-atenas\*.jpg /resize=(1024,768) /aspectratio /resample /convert=D:\home\etc\1024x768\*.jpg
+
+search
+i_view32.exe D:\home\pictures\original\2016-05-02_vacaciones-atenas\*.jpg /resize=(50,30) /aspectratio /resample /convert=D:\home\etc\50x30\*.jpg

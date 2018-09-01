@@ -1,0 +1,3 @@
+delete from [UPictures].[dbo].[Tag]
+delete from [UPictures].[dbo].[Picture]
+delete from [UPictures].[dbo].[Album]

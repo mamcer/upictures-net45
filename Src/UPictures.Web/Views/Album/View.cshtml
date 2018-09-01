@@ -1,0 +1,37 @@
+﻿@using System.Configuration
+@model UPictures.Web.Models.AlbumViewModel
+
+@{
+    ViewBag.Title = @Model.Name;
+}
+
+<h1>@Model.Name</h1>
+
+@{
+    var picturesUrl = ConfigurationManager.AppSettings["PicturesUrl"];
+}
+
+<table>
+    @{var index = 0;}
+    @foreach (var picture in Model.Pictures)
+    {
+        if (index == 0)
+        {
+            @:<tr>
+        }
+        index += 1;
+        <td>
+           <a href="@Url.Action("View", "Picture", new { id = picture.Id })">
+              <picture>
+                 <source src="@picturesUrl/thumbnail/@Model.Name/@picture.FileName" />
+                 <img src="@picturesUrl/thumbnail/@Model.Name/@picture.FileName" />
+              </picture>
+           </a>
+        </td>
+        if (index == 7)
+        {
+           @:</tr>
+           index = 0;
+        }
+    }
+</table>

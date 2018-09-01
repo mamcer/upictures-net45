@@ -1,0 +1,1 @@
+﻿Thumbnail resolution pictures goes here.

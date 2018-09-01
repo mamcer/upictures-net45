@@ -1,0 +1,28 @@
+﻿@using System.Configuration
+@model UPictures.Web.Models.HomeViewModel
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<h1>Albums</h1>
+
+@{
+    var picturesUrl = ConfigurationManager.AppSettings["PicturesUrl"];
+}
+
+<table>
+    @foreach (var item in Model.Albums)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("View", "Album", new { id = item.Id }, null)">
+                    <figure>
+                        <img src="@picturesUrl/thumbnail/@item.Name/@item.ThumbnailFileName" alt="@item.Name" />
+                        <figcaption>@item.Name [@item.Pictures.Count()]</figcaption>
+                    </figure>
+                </a>
+            </td>
+        </tr>
+    }
+</table>

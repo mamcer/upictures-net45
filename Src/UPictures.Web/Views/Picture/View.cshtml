@@ -1,0 +1,75 @@
+﻿@using System.Configuration
+@model UPictures.Web.Models.PictureViewModel
+
+@{
+    ViewBag.Title = @Model.FileName;
+}
+
+@{
+    var picturesUrl = ConfigurationManager.AppSettings["PicturesUrl"];
+}
+
+<p>
+    @Html.ActionLink("Previous", "Previous", new {id = Model.Id}, new {id = "previousLink"})&nbsp;
+    @Html.ActionLink("Next", "Next", new {id = Model.Id}, new {id = "nextLink"})&nbsp;
+    <a href="@picturesUrl/master/@Model.AlbumName/@Model.FileName" target="_blank">View Original</a>&nbsp;
+    @Html.ActionLink("Back to Album", "View", "Album", new {id = Model.AlbumId}, null)
+</p>
+
+<div style="text-align: center">
+    <table width="100%">
+        <tr>
+            <td>
+                <picture>
+                    <img src="@picturesUrl/view/@Model.AlbumName/@Model.FileName" />
+                </picture>
+            </td>
+            <td style="vertical-align: top">
+                <h3>Tags:</h3>
+                @using (Html.BeginForm("AddTag", "Picture"))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.AlbumId)
+                    @Html.HiddenFor(model => model.AlbumName)
+                    @Html.HiddenFor(model => model.Tags)
+
+                    @Html.EditorFor(model => model.NewTag, new {htmlAttributes = new {placeholder = "Add Tag"}})
+                    @Html.ValidationMessageFor(model => model.NewTag, "", new {@class = "text-danger"})
+                }
+
+                <ul style="list-style-type: none;padding-left: 0pt">
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <li>@tag.Name @Html.ActionLink("[x]", "RemoveTag", "Picture", new { pictureId = Model.Id, tagId = tag.Id }, null)</li>
+                    }
+                </ul>
+            </td>
+        </tr>
+    </table>
+</div>
+
+@section scripts{
+    <script language="javascript">
+        function leftArrowPressed() {
+            $('#previousLink')[0].click();
+        }
+
+        function rightArrowPressed() {
+            $('#nextLink')[0].click();
+        }
+
+        document.onkeydown = function(evt) {
+            evt = evt || window.event;
+            switch (evt.keyCode) {
+            case 37:
+                leftArrowPressed();
+                break;
+            case 39:
+                rightArrowPressed();
+                break;
+            }
+        };
+    </script>
+}

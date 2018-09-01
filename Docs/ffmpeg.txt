@@ -1,0 +1,24 @@
+#ffmpeg.exe -i DSCN6435.MOV -filter:v scale=1280:720 -c:a copy caca.mp4
+
+#ffmpeg.exe -i DSCN6435.MOV -filter:v scale=854:480 -c:a copy view\DSCN6435.mp4
+
+#ffmpeg -i nariz.3GP -qscale 0 -ab 64k -ar 44100 test.mp4
+
+ffmpeg.exe -i "sala verde tt 2014.wmv" -vf scale=854:480 view\sala-verde-tt-2014.mp4
+ffmpeg.exe -i WP_20150318_232706Z.mp4 -vf scale=854:480 view\WP_20150318_232706Z.webm
+
+ffmpeg -i Video0028.3gp -qscale 0 view\Video0028-2.mp4
+
+ffmpeg -i test.mp4 -ss 00:00:05 -vframes 1 screenshot.jpg
+
+.avi	553
+.mov	1440	
+.3gp	100
+.mpg	18
+.mp4	313
+
+426x240
+640x360
+854x480
+1280x720
+1920x1080

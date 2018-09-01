@@ -1,0 +1,1 @@
+﻿Search resolution pictures goes here.

@@ -1,0 +1,39 @@
+﻿@using System.Configuration
+@model IEnumerable<UPictures.Web.Models.PictureViewModel>
+
+@{
+    ViewBag.Title = "CloseDownload";
+}
+
+<h2>Download Details</h2>
+
+@{
+    var picturesUrl = ConfigurationManager.AppSettings["PicturesUrl"];
+}
+
+@Html.ActionLink("Download", "DownloadDownload", "Home")
+<br/>
+<br />
+
+<table>
+    <tr>
+        <th>Picture</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var picture in Model)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("View", "Picture", new {id = picture.Id})">
+                    <picture>
+                        <source src="@picturesUrl/thumbnail/@picture.AlbumName/@picture.FileName" />
+                        <img src="@picturesUrl/thumbnail/@picture.AlbumName/@picture.FileName" />
+                    </picture>
+                </a>
+            </td>
+            <td>
+                @Html.ActionLink("Remove", "Unselect", "Home", new { id = picture.Id }, null)
+            </td>
+        </tr>
+    }
+</table>

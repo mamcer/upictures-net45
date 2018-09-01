@@ -1,0 +1,17 @@
+﻿@model UPictures.Web.Models.DownloadViewModel
+
+@{
+    ViewBag.Title = "Download";
+}
+
+<h2>Download Name</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.EditorFor(Model => Model.Name)
+
+    @:<input type="submit" value="Update" />
+}
+
