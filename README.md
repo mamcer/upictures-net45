@@ -2,6 +2,8 @@
 
 A .NET MVC Web Application and console application from 2016.
 
+> More details about why I published this project in [this blog post](https://mamcer.github.io/2018-09-02-i-cleaned-up-my-virtual-basement/)
+
 ## Description
 
 An web application that helps to easily search, tag and view pictures and videos from a media collection.
